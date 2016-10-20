@@ -45,6 +45,20 @@ Git is free software distributed under the GPL.
 		-stage(缓存区)
 		-master branch
 			－HEAD(当前commit)
+9.在工作区修改了文件－－>使用git.add将工作区的文件添加到版本库的缓存区中－－>使用git.commit将缓存区的文件提交到当前版本。
+
+1>当只是修改了工作去的文件，并没有添加到缓存区：git checkout - - file.撤销工作区的修改
+2>在工作区修改了文件，并添加到了缓存区，但海没有提交到当前版本分支：git reset HEAD file可以把缓存区的修改撤销，并重新放回工作区。然后再使用git checkout - - file撤销工作区的修改。
+3>修改了工作去文件，也添加到了缓存，还进行了提交，使用git reset HEAD commit_id返回上一个commit。
+
+10.delete file
+1>在目录文件夹下直接删除或者使用rm file的命令就行删除。
+2>这个时候工作区和版本库不一致了。
+	－确定也要从版本库里面删除文件
+		git rm file
+		git commit -m “remove file”.
+	-工作区删除错了，从版本库恢复文件
+		git checkout － － file.
 
 
 	
