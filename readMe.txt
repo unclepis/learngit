@@ -8,9 +8,9 @@ Git is free software distributed under the GPL.
 2.initial the git repository 
 	git init	//initialised empty git respository
 
-	<how to add a file into repository>
-		-git add
-		-git commit
+	<how to add a file into repository>往git版本库里面添加东西
+		-git add把文件添加到缓存区。
+		-git commit把缓存区的所有内容提交到当前分支。
 
 3.add the new plain file
 	git add filename	//tell Git to add the file in respository
@@ -38,3 +38,13 @@ Git is free software distributed under the GPL.
 			//HEAD~100 the 100 previous commit.
 		-git log	//check the history commit,in order to go back.
 		-git reflog    //check the command history,in order to go to the target edition.
+
+
+8.working directory:（工作区）
+	-repository(.git)版本库
+		-stage(缓存区)
+		-master branch
+			－HEAD(当前commit)
+
+
+	
