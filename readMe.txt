@@ -47,6 +47,10 @@ Git is free software distributed under the GPL.
 			－HEAD(当前commit)
 9.在工作区修改了文件－－>使用git.add将工作区的文件添加到版本库的缓存区中－－>使用git.commit将缓存区的文件提交到当前版本。
 
+	git checkout - - file  //撤销工作区的文件
+	git reset HEAD file	//撤销缓存区的文件
+	git reset HEAD commit_id//版本回退
+
 1>当只是修改了工作去的文件，并没有添加到缓存区：git checkout - - file.撤销工作区的修改
 2>在工作区修改了文件，并添加到了缓存区，但海没有提交到当前版本分支：git reset HEAD file可以把缓存区的修改撤销，并重新放回工作区。然后再使用git checkout - - file撤销工作区的修改。
 3>修改了工作去文件，也添加到了缓存，还进行了提交，使用git reset HEAD commit_id返回上一个commit。
@@ -103,6 +107,27 @@ id_rsa.pub这个是公钥，可以放心地告诉任何人。
 5>ls指令输出所有的子目录文件，查看有没有readMe.md文件
 6>多人协作的项目，每个人克隆一份就好了。
 7>在本地克隆仓库或者建立远程仓库，需要知道仓库的地址。默认的ssh使用git://，使用https://也是可以的。git支持多种协议，包括https。在添加仓库地址的时候，可以使用https或者ssh，因为ssh支持的原成git协议速度最快，但是有的公司只开放https端口的公司就只能用这个，不能用ssh协议。
+
+14.分支管理
+1>一开始的时候，git只有一个主分支master，每次提交一次，master往前移动一次，HEAD指向master，master指向最新的提交。
+2>当我们创建新的分支，git新建一个指针叫dev，指向master相同的提交，再把HEAD指向dev，就表示当前的分支在dev上。
+3>我们在dev上的工作完成了，就可以把dev合并到master上，合并完以后甚至可以删除dev分支。
+	git checkout -b dev	//创建了dev分支，并且把HEAD指向dev
+		-b表示创建并切换
+		git branch命令会列出所有分支，并在当前分支前面加＊
+	git commit -m ”newCommit” //发生了新的提交，dev分支发生移动，HEAD指向dev也发生移动。
+	git checkout master	//切换回master分支
+	git merge dev	//合并dev到master主分支
+		git merge命令用语合并指定分支到当前分支。
+	git branch -d dev	//删除dev分支
+
+小结：git鼓励大量食用分支：
+查看分支：git branch
+创将分支：git branch name
+切换分支：git checkout name
+创建并切换分支：git checkout -b name
+合并某分支到当前分支：git merge name
+删除分支：git branch -d name
 
 
 	
