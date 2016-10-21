@@ -76,5 +76,22 @@ id_rsa.pub这个是公钥，可以放心地告诉任何人。
 
 5>gitbub上免费托管的git仓库，任何人都可以看到，除非交费把它变成私有仓库，或者自己搭建一个git服务器。
 
+12.添加远程仓库
+在本地意境创建了一个git仓库，想在github上也创建一个远程git仓库，完成两个库远程同步。
+	这样github上的仓库可以作为备份
+	也可以协助其他人通过该仓库进行协作。
+1>create a new repository
+2>repository name和本地的git库名字一致。
+3>在本地仓库下运行 git remote add origin git@github.com:userName/repositoryName.git
+	origin是远程库的名字
+	userName为github的账号
+	repositoryName为本地git仓库的名字
+4>把本地库的所有内容推送到远程库上：
+	git push -u origin master
+		git push	//把当前分支master推送到远程
+		－u  //在第一次推送，把本地master分支内容推送到远程新的master分支
+		    //在本地master分支和远程的master分支之间创建关联，方便以后推送。
+	以后的本地推送: git push origin master
+
 
 	
