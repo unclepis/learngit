@@ -60,5 +60,21 @@ Git is free software distributed under the GPL.
 	-工作区删除错了，从版本库恢复文件
 		git checkout － － file.
 
+11.远程仓库
+本地的git仓库和gitbub仓库之间的传输是通过ssh加密的
+1>创建ssh key
+ssh-keygen -t rss -C “youremail@example.com”
+在.ssh目录下有一个私钥和一个共钥文件：
+id_rsa 这个是私钥，不能公开出去
+id_rsa.pub这个是公钥，可以放心地告诉任何人。
+
+2>登陆gitbub在account settings里面添加ssh key，点击add ssh key，填上任一的title，在key文本框里面粘贴id_rsa.pub文件的内容。
+
+3>这样gitbub就可以识别出你推送的提交确实是你自己推送的，而不是别人冒充的，而git支持ssh协议。所以，gitbub只要知道了你的公钥，就可以确定只有你自己才能推送。
+
+4>gitbub允许添加多个key，这样如果你有多个电脑，比如一会在公司，一会在家提交，只需要把每台电脑的key都添加带gitbub上，这样就好了。
+
+5>gitbub上免费托管的git仓库，任何人都可以看到，除非交费把它变成私有仓库，或者自己搭建一个git服务器。
+
 
 	
