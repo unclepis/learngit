@@ -60,6 +60,7 @@ Git is free software distributed under the GPL.
 	-工作区删除错了，从版本库恢复文件
 		git checkout － － file.
 
+	<先创将本地仓库－－>数据同步到远程仓库>
 11.远程仓库
 本地的git仓库和gitbub仓库之间的传输是通过ssh加密的
 1>创建ssh key
@@ -92,6 +93,16 @@ id_rsa.pub这个是公钥，可以放心地告诉任何人。
 		－u  //在第一次推送，把本地master分支内容推送到远程新的master分支
 		    //在本地master分支和远程的master分支之间创建关联，方便以后推送。
 	以后的本地推送: git push origin master
+
+	<先创将远程仓库－－>从远程仓库克隆到本地>
+13.从远程库克隆
+1>在github上创将一个仓库
+2>创将仓库的名字repositoryName,勾选使用readMe.md初始化这个仓库。
+3>git clone git@github.com:userName/repositoryName.git
+4>切换到克隆的仓库 cd repositoryName
+5>ls指令输出所有的子目录文件，查看有没有readMe.md文件
+6>多人协作的项目，每个人克隆一份就好了。
+7>在本地克隆仓库或者建立远程仓库，需要知道仓库的地址。默认的ssh使用git://，使用https://也是可以的。git支持多种协议，包括https。在添加仓库地址的时候，可以使用https或者ssh，因为ssh支持的原成git协议速度最快，但是有的公司只开放https端口的公司就只能用这个，不能用ssh协议。
 
 
 	
