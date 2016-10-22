@@ -129,5 +129,28 @@ id_rsa.pub这个是公钥，可以放心地告诉任何人。
 合并某分支到当前分支：git merge name
 删除分支：git branch -d name
 
+15.conflict解决冲突
+当git无法自动合并分支的时候，就必须首先解决冲突，然后再提交合并结果。
+	创建并切换分支：git checkout -b feature1
+		在feature1上改变文件：-do something changes in the files
+		提交到缓存区：git add file
+		提交到该分支：git commit -m ”comment”
+	切换到原来的分支:git checkout master(系统会提示当前的分支比远程分支库提前一个提交，因为还没有同步到远程库)
+		在master上改变文件：
+		提交到缓存区域：
+		提交到master分支：
+//到这，feature1和master分支文件都发生了更改。在这种情况下，git没法执行快速合并f。
+	自动合并分支:git merge feature1
+//git会提醒你发生了冲突，必须手动解决冲突；通过git status可以查看冲突的文件
+//git会用<<<<<<<<<<<,=========,>>>>>>>>标记处不同分支的内容
+
+	需要修改发生冲突的文件，并使的他们有一致的内容。
+	提交到缓存区域
+	提交到分支
+	合并两个分支git merge feature1;此时合并完成。
+
+简单的说就是当两个分支发生冲突的时候，不能尽兴fast forward快速合并，需要手动的修改发生冲突的文件，统一之后再合并。
+
+使用git log可以查看分支的合并图。
 
 	
