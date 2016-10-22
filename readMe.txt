@@ -1,13 +1,16 @@
 Git is a distributed version control system.
 Git is free software distributed under the GPL.
 
-1.create the repository
+learngit(工作区)－－>.git(版本库)，版本库里面有缓存区和master分支。
+
+1.create the repository创建版本库
 	mkdir folder name    //create the repository
 	cd folder name      //access the path of the folder
 	pwd                 //public work department,show the current path of folder
 2.initial the git repository 
 	git init	//initialised empty git respository
-
+			／／把这个目录变成了git可以管理的版本库
+			／／.git目录是git涌来跟踪管理版本库的，不要随意更改。
 	<how to add a file into repository>往git版本库里面添加东西
 		-git add把文件添加到缓存区。
 		-git commit把缓存区的所有内容提交到当前分支。
@@ -50,6 +53,7 @@ Git is free software distributed under the GPL.
 9.在工作区修改了文件－－>使用git.add将工作区的文件添加到版本库的缓存区中－－>使用git.commit将缓存区的文件提交到当前版本。
 
 	git checkout - - file  //撤销工作区的文件
+		git checkout branchName//切换到分支
 	git reset HEAD file	//撤销缓存区的文件
 	git reset HEAD commit_id//版本回退
 
@@ -268,4 +272,15 @@ git push origin tagName	//推送一个本地标签
 git push origin - -tags	//可以推送全部为推送哟的本地标签
 git tag -d tagName	//删除一个本地标签
 git push origin :refs/tags/tagName	//可以删除一个远程标签。
+
+24.使用github
+在github上，可以任意的fork开源仓库
+	然后clone到本地
+自己用用fork后的仓库的读写权限
+可以推送pull request给官方库来贡献代码
+
+25.忽略特殊文件
+把不想提交的在git版本库目录下的文件隐藏到.gitingore下。
+
+
 
