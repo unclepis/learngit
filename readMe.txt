@@ -24,6 +24,8 @@ Git is free software distributed under the GPL.
 
 5.check the content of file
 	cat filename
+	vi filename //打开或新建文件
+	:wq保存并退出
 6.check the status of the file
 	git status	//check the current status of the respository
 7. check the difference between the two modification
@@ -185,7 +187,10 @@ id_rsa.pub这个是公钥，可以放心地告诉任何人。
 		修改bug文件bugs
 		git add bugs
 		git commit -m”fix bugs”
+	//可以返回master然后合并issue-01分支
+	//也可以直接把master分支合并到issue-01分支.(git checkout master或者可以把修复的bug issue-01分支合并到master)
 	git checkout master	//切换会master分支
+		
 	git merge — -no-ff -m”bugs information” issue-01 //合并issue-01分支到master分支
 	git branch -d issue-01	／／删除了修复bug的issue-01分支
 	git checkout dev	／／返回到上一个任务分支dev
@@ -195,4 +200,46 @@ id_rsa.pub这个是公钥，可以放心地告诉任何人。
 	1>git stash apply	//恢复上一个任务的工作区，但是stash内容不删除
 		git stash drop／／删除stash内容
 	2>git stash pop	//恢复的同时把stash内容页删除了
+
+19.feature 分支
+当创建了一个feature分支，在没有被合并到其他分支的前提下需要删除，则需要使用git branch -D feature01
+	
+一般的git上master上是作为版本更新的分支，要修改需要使用创建一个dev分支，然后每个人开发一个feature分支。feature分支开发完成提交到dev分支，最后合并到master分支发布。
+	//一般的流程就是创建feature01分支，实现功能，合并到dev分支，删除feature01分支
+	git checkout -b feature01;
+		开发功能fun
+	git add fun
+	git commit -m”function”
+	git checkout dev
+	git merge - -no-ff -m”function describe” feature01;
+	git branch -d feature01
+
+	／／实际情况是
+	git checkout -b feature01;
+		开发功能fun
+	git add fun
+	git commit -m”function”
+	git checkout dev
+在此时，接到上级命令，新功能发布取消。需要删除feature01分支不合并到dev中。
+	由于feature01分支创建并作了修改，但是还没有合并到其他分支里面，git会提示，该分支没有被合并，如果删除将会丢失修改，如果强行需要删除，则需要使用
+	git branch -D feature01;
+此时没有被合并的feature01分支被强行删除了。
+
+20.多人协作
+工作模式：
+	1>首先，git push origin branchName推送自己的修改
+	2>如果推送失败了，则因为远程分支比你的本地更加的新，所以需要使用git pull试图合并。	
+		如果git pull提示no tracking information则说明本地分支和远程分支没有建立关联。
+		需要使用git branch - -set-upstream branchName origin/branchName建立关联。
+	3>如果合并有冲突，则解决冲突，并在本地提交
+	4>如果没有冲突或者解决了冲突，再用git push origin branchName推送就能成功。
+	
+git remote ／／查看远程库的信息
+git remote -v	／／查看远程库的详细信息
+git push origin branchName	//将本地的branchName推送到远程的origin/branchName
+	推送失败，显示远程库比本地库版本更加的新，则使用git pull抓取远程版本内容。
+git checkout -b branchName origin/branchName	／／创建本地仓库，并准备和远程库建立关联
+git branch - -set-upstream branchName origin/branchName	//建立本地库和远程库的关系
+git pull	／／从远程抓取分支，如果有冲突解决冲突。
+
 	
