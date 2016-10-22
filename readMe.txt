@@ -148,9 +148,51 @@ id_rsa.pub这个是公钥，可以放心地告诉任何人。
 	提交到缓存区域
 	提交到分支
 	合并两个分支git merge feature1;此时合并完成。
+	删除分支 git branch -d feature1
 
 简单的说就是当两个分支发生冲突的时候，不能尽兴fast forward快速合并，需要手动的修改发生冲突的文件，统一之后再合并。
 
 使用git log可以查看分支的合并图。
 
+16.分支管理策略
+通常，合并分支时，git会使用ff(fast forward)模式，但是删除分支后，会丢失分支信息。
+所以如果要禁止ff模式，git就回在合并merge的时候生成一个新的commit，这样从分支历史上就可以看出分支信息。
+
+	创建并切换分支：git checkout -b dev
+	修改dev分支上的文件
+	添加到缓存去
+	提交到dev分支
+	切换到master分支 git checkout master
+	合并dev分支并禁用ff模式：git merge — -no-ff -m”merge with no-ff” dev
+
+17.分支管理策略：
+1>master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在这分支上干活。
+2>新建一个dev分支，在这干活，然后在这个dev上的版本稳定需要发布的时候，把dev分支合并到master上发布。
+3>每个人都在自己的分支上工作，然后是不是往dev分支上合并就好了，然后等最后的dev完成需要发布，合并到master上。
+普通模式:- -no-ff合并后的历史有分支信息
+快速模式：fast forward合并后没有分支信息。
+
+18.bug分支
+当修复bug的时候我们会创建一个分支进行修复，然后合并并删除该分支。
+当手头工作没有完成的时候，先把工作现场git stash一下，然后去修复bug，修复后在git stash pop回到工作现场。
+
+在master分支下创建了一个dev分支正在修改项目，突然临时接到任务，需要修改一个bug，所以创将了一个issue-01分支来修改bug，但是之前的dev分支上的任务还没有完成，所以需要临时存储着歌dev分支的修改，但是不提交并合并到master。
+
+	git stash	//临时存储当前的工作区
+	git status	//存储了当前工作区后查看工作区是干净的，没有发生修改。
+		git checkout master	//回到master分支
+		git checkout -b issue-01	／／创建并切换到issue-01分支准备修改bug
+		修改bug文件bugs
+		git add bugs
+		git commit -m”fix bugs”
+	git checkout master	//切换会master分支
+	git merge — -no-ff -m”bugs information” issue-01 //合并issue-01分支到master分支
+	git branch -d issue-01	／／删除了修复bug的issue-01分支
+	git checkout dev	／／返回到上一个任务分支dev
+		git stash list 	／／可以查看上一个任务存储列表
+／／恢复上一个任务的工作区两种方法：
+
+	1>git stash apply	//恢复上一个任务的工作区，但是stash内容不删除
+		git stash drop／／删除stash内容
+	2>git stash pop	//恢复的同时把stash内容页删除了
 	
