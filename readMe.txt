@@ -3,12 +3,31 @@ Git is free software distributed under the GPL.
 
 learngit(工作区)－－>.git(版本库)，版本库里面有缓存区和master分支。
 
+－－－－－－－－－在本地创建仓库－－>托管到远程仓库－－－－－－－－－－－
+	1>mkdir repostory_name／／创建本地仓库
+	2>cd repostory_name//切换到当前仓库
+	3>pwd ／／查看路径
+	4>在本地仓库里面创建文件，比如readMe.txt
+	5>修改文件并add commit
+		git add readMe.txt	//添加到缓存区stage
+		git commit -m"desc"	／／提交到master分支
+	6>git init   //初始化仓库，创建仓库的版本库.git
+	7>手动在远程git上创建仓库
+	8>创建联系
+		git remote add origin git@github.com:uncliepis/learngit.git
+	9>在本地修改文件，add并commit
+	10>git push origin master
+		//将本地文件push到远程库
+		／／可以是master库也可以是别的库
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
 1.create the repository创建版本库
 	mkdir folder name    //create the repository
+		在本地创建仓库
 	cd folder name      //access the path of the folder
+		切换到仓库
 	pwd                 //public work department,show the current path of folder
 2.initial the git repository 
-	git init	//initialised empty git respository
+	git init	//initialised empty git repository
 			／／把这个目录变成了git可以管理的版本库
 			／／.git目录是git涌来跟踪管理版本库的，不要随意更改。
 	<how to add a file into repository>往git版本库里面添加东西
@@ -16,7 +35,7 @@ learngit(工作区)－－>.git(版本库)，版本库里面有缓存区和master
 		-git commit把缓存区的所有内容提交到当前分支。
 
 3.add the new plain file
-	git add filename	//tell Git to add the file in respository
+	git add filename	//tell Git to add the file in repository
 4.commit the file
 	git commit -m “describe the modification”	//tell Git submit the file in repository
 
@@ -30,7 +49,7 @@ learngit(工作区)－－>.git(版本库)，版本库里面有缓存区和master
 	vi filename //打开或新建文件
 	:wq保存并退出
 6.check the status of the file
-	git status	//check the current status of the respository
+	git status	//check the current status of the repository
 7. check the difference between the two modification
 	git diff	//tell user the modification 
 	<how to go back or go to the target edition of the Git>
@@ -52,10 +71,10 @@ learngit(工作区)－－>.git(版本库)，版本库里面有缓存区和master
 			－HEAD(当前commit)
 9.在工作区修改了文件－－>使用git.add将工作区的文件添加到版本库的缓存区中－－>使用git.commit将缓存区的文件提交到当前版本。
 
-	git checkout - - file  //撤销工作区的文件
+	git checkout - - file  //撤销工作区的文件／／没有add也没有commit
 		git checkout branchName//切换到分支
-	git reset HEAD file	//撤销缓存区的文件
-	git reset HEAD commit_id//版本回退
+	git reset HEAD file	//撤销缓存区的文件	／／已经add
+	git reset HEAD commit_id//版本回退 //已经commit
 
 1>当只是修改了工作去的文件，并没有添加到缓存区：git checkout - - file.撤销工作区的修改
 2>在工作区修改了文件，并添加到了缓存区，但海没有提交到当前版本分支：git reset HEAD file可以把缓存区的修改撤销，并重新放回工作区。然后再使用git checkout - - file撤销工作区的修改。
