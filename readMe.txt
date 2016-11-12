@@ -1,6 +1,10 @@
 Git is a distributed version control system.
 Git is free software distributed under the GPL.
 
+使用超级管理员权限安装插件：
+sudo cnpm install -g xxx
+在全局环境下安装xxxx
+
 learngit(工作区)－－>.git(版本库)，版本库里面有缓存区和master分支。
 
 －－－－－－－－－在本地创建仓库－－>托管到远程仓库－－－－－－－－－－－
